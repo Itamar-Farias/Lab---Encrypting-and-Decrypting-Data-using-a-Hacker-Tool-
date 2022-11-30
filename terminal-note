@@ -1,0 +1,161 @@
+itamar@itamar-Inspiron-15-3567:~$ mkdir Zip-Files
+itamar@itamar-Inspiron-15-3567:~$ cd Zip-Files/
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ echo This is a sample text file > sample-1.txt
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ echo This is a sample text file > sample-2.txt
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ echo This is a sample text file > sample-3.txt
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ ls
+sample-1.txt  sample-2.txt  sample-3.txt
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ zip -e file-1.zip sample*
+Enter password: 
+Verify password: 
+  adding: sample-1.txt (stored 0%)
+  adding: sample-2.txt (stored 0%)
+  adding: sample-3.txt (stored 0%)
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ echo This is a sample text file > sample-4.txt
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ echo This is a sample text file > sample-5.txt
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ zip -e file-2.zip sample*
+Enter password: 
+Verify password: 
+  adding: sample-1.txt (stored 0%)
+  adding: sample-2.txt (stored 0%)
+  adding: sample-3.txt (stored 0%)
+  adding: sample-4.txt (stored 0%)
+  adding: sample-5.txt (stored 0%)
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ zip -e file-3.zip sample*
+Enter password: 
+Verify password: 
+  adding: sample-1.txt (stored 0%)
+  adding: sample-2.txt (stored 0%)
+  adding: sample-3.txt (stored 0%)
+  adding: sample-4.txt (stored 0%)
+  adding: sample-5.txt (stored 0%)
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ zip -e file-4.zip sample*
+Enter password: 
+Verify password: 
+  adding: sample-1.txt (stored 0%)
+  adding: sample-2.txt (stored 0%)
+  adding: sample-3.txt (stored 0%)
+  adding: sample-4.txt (stored 0%)
+  adding: sample-5.txt (stored 0%)
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ zip -e file-5.zip sample*
+Enter password: 
+Verify password: 
+  adding: sample-1.txt (stored 0%)
+  adding: sample-2.txt (stored 0%)
+  adding: sample-3.txt (stored 0%)
+  adding: sample-4.txt (stored 0%)
+  adding: sample-5.txt (stored 0%)
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ ls -l f*
+-rw-rw-r-- 1 itamar itamar  643 nov 30 11:35 file-1.zip
+-rw-rw-r-- 1 itamar itamar 1057 nov 30 11:36 file-2.zip
+-rw-rw-r-- 1 itamar itamar 1057 nov 30 11:37 file-3.zip
+-rw-rw-r-- 1 itamar itamar 1057 nov 30 11:37 file-4.zip
+-rw-rw-r-- 1 itamar itamar 1057 nov 30 11:38 file-5.zip
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ unzip file-1.zip
+Archive:  file-1.zip
+[file-1.zip] sample-1.txt password: 
+replace sample-1.txt? [y]es, [n]o, [A]ll, [N]one, [r]ename: 
+error:  invalid response [{ENTER}]
+replace sample-1.txt? [y]es, [n]o, [A]ll, [N]one, [r]ename: ^Citamar@itamar-Inspiron-15-3567:~/Zip-Files$ 
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ unzip file-1.zip
+Archive:  file-1.zip
+[file-1.zip] sample-1.txt password: 
+password incorrect--reenter: 
+password incorrect--reenter: 
+   skipping: sample-1.txt            incorrect password
+[file-1.zip] sample-2.txt password: 
+password incorrect--reenter: 
+password incorrect--reenter: itamar@itamar-Inspiron-15-3567:~/Zip-Files$ 
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ fcrackzip -h
+
+fcrackzip version 1.0, a fast/free zip password cracker
+written by Marc Lehmann <pcg@goof.com> You can find more info on
+http://www.goof.com/pcg/marc/
+
+USAGE: fcrackzip
+          [-b|--brute-force]            use brute force algorithm
+          [-D|--dictionary]             use a dictionary
+          [-B|--benchmark]              execute a small benchmark
+          [-c|--charset characterset]   use characters from charset
+          [-h|--help]                   show this message
+          [--version]                   show the version of this program
+          [-V|--validate]               sanity-check the algorithm
+          [-v|--verbose]                be more verbose
+          [-p|--init-password string]   use string as initial password/file
+          [-l|--length min-max]         check password with length min to max
+          [-u|--use-unzip]              use unzip to weed out wrong passwords
+          [-m|--method num]             use method number "num" (see below)
+          [-2|--modulo r/m]             only calculcate 1/m of the password
+          file...                    the zipfiles to crack
+
+methods compiled in (* = default):
+
+ 0: cpmask
+ 1: zip1
+*2: zip2, USE_MULT_TAB
+
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ fcrackzip -vul 1-2 file-1.zip
+found file 'sample-1.txt', (size cp/uc     39/    27, flags 9, chk 5c30)
+found file 'sample-2.txt', (size cp/uc     39/    27, flags 9, chk 5c34)
+found file 'sample-3.txt', (size cp/uc     39/    27, flags 9, chk 5c36)
+
+
+PASSWORD FOUND!!!!: pw == B
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ fcrackzip -vul 1-2 file-2.zip
+found file 'sample-1.txt', (size cp/uc     39/    27, flags 9, chk 5c30)
+found file 'sample-2.txt', (size cp/uc     39/    27, flags 9, chk 5c34)
+found file 'sample-3.txt', (size cp/uc     39/    27, flags 9, chk 5c36)
+found file 'sample-4.txt', (size cp/uc     39/    27, flags 9, chk 5c87)
+found file 'sample-5.txt', (size cp/uc     39/    27, flags 9, chk 5c89)
+
+
+PASSWORD FOUND!!!!: pw == R2
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ fcrackzip -vul 1-3 file-3.zip
+found file 'sample-1.txt', (size cp/uc     39/    27, flags 9, chk 5c30)
+found file 'sample-2.txt', (size cp/uc     39/    27, flags 9, chk 5c34)
+found file 'sample-3.txt', (size cp/uc     39/    27, flags 9, chk 5c36)
+found file 'sample-4.txt', (size cp/uc     39/    27, flags 9, chk 5c87)
+found file 'sample-5.txt', (size cp/uc     39/    27, flags 9, chk 5c89)
+
+
+PASSWORD FOUND!!!!: pw == 0B1
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ fcrackzip -vul 1-4 file-4.zip
+found file 'sample-1.txt', (size cp/uc     39/    27, flags 9, chk 5c30)
+found file 'sample-2.txt', (size cp/uc     39/    27, flags 9, chk 5c34)
+found file 'sample-3.txt', (size cp/uc     39/    27, flags 9, chk 5c36)
+found file 'sample-4.txt', (size cp/uc     39/    27, flags 9, chk 5c87)
+found file 'sample-5.txt', (size cp/uc     39/    27, flags 9, chk 5c89)
+checking pw X9M~                                    
+
+PASSWORD FOUND!!!!: pw == Y0Da
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ fcrackzip -vul 1-5 file-5.zip
+found file 'sample-1.txt', (size cp/uc     39/    27, flags 9, chk 5c30)
+found file 'sample-2.txt', (size cp/uc     39/    27, flags 9, chk 5c34)
+found file 'sample-3.txt', (size cp/uc     39/    27, flags 9, chk 5c36)
+found file 'sample-4.txt', (size cp/uc     39/    27, flags 9, chk 5c87)
+found file 'sample-5.txt', (size cp/uc     39/    27, flags 9, chk 5c89)
+checking pw C-H*~                                   
+
+PASSWORD FOUND!!!!: pw == C-3P0
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ echo This is a sample text file > sample-6.txt
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ zip -e file-6.zip sample*
+Enter password: 
+Verify password: 
+  adding: sample-1.txt (stored 0%)
+  adding: sample-2.txt (stored 0%)
+  adding: sample-3.txt (stored 0%)
+  adding: sample-4.txt (stored 0%)
+  adding: sample-5.txt (stored 0%)
+  adding: sample-6.txt (stored 0%)
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ fcrackzip -vul 1-6 file-6.zip
+found file 'sample-1.txt', (size cp/uc     39/    27, flags 9, chk 5c30)
+found file 'sample-2.txt', (size cp/uc     39/    27, flags 9, chk 5c34)
+found file 'sample-3.txt', (size cp/uc     39/    27, flags 9, chk 5c36)
+found file 'sample-4.txt', (size cp/uc     39/    27, flags 9, chk 5c87)
+found file 'sample-5.txt', (size cp/uc     39/    27, flags 9, chk 5c89)
+found file 'sample-6.txt', (size cp/uc     39/    27, flags 9, chk 6181)
+checking pw ANAAM~                                  
+
+PASSWORD FOUND!!!!: pw == ANAK1N
+itamar@itamar-Inspiron-15-3567:~/Zip-Files$ 
+
